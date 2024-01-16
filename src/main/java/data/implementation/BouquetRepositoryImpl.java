@@ -6,9 +6,7 @@ import domain.Bouquet;
 import domain.Flower;
 import util.exceptions.FlowershopException;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,19 +64,15 @@ public class BouquetRepositoryImpl implements BouquetsRepository {
 
 
     public Bouquet placeOrder(Bouquet bouquet, String customerName) {
-        File customerDir = new File("orders/" + customerName);
-        if (!customerDir.exists()) {
-            customerDir.mkdirs();
+        File bouquetsDir = new File("bouquets");
+        if (!bouquetsDir.exists()) {
+            bouquetsDir.mkdir();
         }
 
-        File orderFile = new File(customerDir, "order.txt");
+        File orderFile = new File(bouquetsDir, customerName + ".dat");
 
-        try (PrintStream ps = new PrintStream(orderFile)) {
-            ps.println("Order details:");
-            for (Flower flower : bouquet.getFlowers()) {
-                ps.println("- " + flower.getName() + " - $" + flower.getPrice());
-            }
-            ps.println("Total Price: $" + bouquet.calculateTotalPrice());
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(orderFile))) {
+            oos.writeObject(bouquet);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Unable to write order to file", e);
             throw new FlowershopException("Unable to write order to file");
@@ -86,6 +80,7 @@ public class BouquetRepositoryImpl implements BouquetsRepository {
 
         return bouquet;
     }
+
 
     public List<Bouquet> getOrders(String customerName) {
         // order als lijst uit files halen

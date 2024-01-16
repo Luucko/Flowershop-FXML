@@ -1,6 +1,8 @@
 package domain;
 
-public class Flower {
+import java.io.Serializable;
+
+public class Flower implements Serializable {
     private final int id = -1;
 
     /*

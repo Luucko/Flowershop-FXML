@@ -1,10 +1,11 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Bouquet {
+public class Bouquet implements Serializable {
     private final List<Flower> flowers;
     private final String bouquetId;
 
@@ -39,14 +40,6 @@ public class Bouquet {
         if (o == null || getClass() != o.getClass()) return false;
         Bouquet bouquet = (Bouquet) o;
         return Objects.equals(bouquetId, bouquet.bouquetId);
-    }
-
-    @Override
-    public String toString() {
-        return "Bouquet{" +
-                "flowers=" + flowers +
-                ", bouquetId='" + bouquetId + '\'' +
-                '}';
     }
 
     @Override

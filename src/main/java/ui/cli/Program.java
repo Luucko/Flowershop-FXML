@@ -18,6 +18,7 @@ public class Program {
     private void generateFlowers(int size) {
         BouquetRepositoryImpl bouquetRepository = new BouquetRepositoryImpl();
         System.out.println(bouquetRepository.generateBouquet(size).toString());
+        bouquetRepository.placeOrder(bouquetRepository.generateBouquet(10), "test");
     }
 
     private void registerCustomer(String login, String password) {
