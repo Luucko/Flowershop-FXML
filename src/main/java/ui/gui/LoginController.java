@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -46,16 +47,13 @@ public class LoginController {
                 boolean isValidUser = service.checkCustomerCredentials(txtLoginField.getText(), txtPasswordField.getText());
 
                 if (isValidUser) {
-                    System.out.println("customer logged in successfully");
                     openBouquetsWindow();
                 } else {
-                    System.out.println("username and password do not match");
-                    // errorscreen popup
+                    showErrorPopup("Username and password do not match");
                 }
 
             } catch (FlowershopException e) {
-                // Handle other exceptions, if any
-                System.out.println(e);
+                showErrorPopup(e.getMessage());
             }
         }
     }
@@ -67,15 +65,12 @@ public class LoginController {
                 Customer newCustomer = service.registerCustomer(txtLoginField.getText(), txtPasswordField.getText());
 
                 if (newCustomer == null) {
-                    System.out.println("username already exists");
-                    // errorscreen popup
+                    showErrorPopup("Username already exists");
                 } else {
-                    System.out.println("new customer registered successfully");
-                    // successful screen popup
+                    showInfoPopup("Customer " + newCustomer.getLogin() + " registered successfully");
                 }
             } catch (FlowershopException e) {
-                // Handle other exceptions, if any
-                System.out.println(e);
+                showErrorPopup(e.getMessage());
             }
         }
     }
@@ -85,10 +80,9 @@ public class LoginController {
         String password = txtPasswordField.getText();
 
         if (login.isEmpty() || password.isEmpty()) {
-            System.out.println("Not all fields are filled in right now");
+            showErrorPopup("Not all fields are filled in right now");
             return false;
         }
-
         return true;
     }
 
@@ -111,6 +105,22 @@ public class LoginController {
     private void closeLogin() {
         Stage stage = (Stage) btnLogin.getScene().getWindow();
         stage.close();
+    }
+
+    private void showErrorPopup(String message) {
+        showAlert(Alert.AlertType.ERROR, "Error", message);
+    }
+
+    private void showInfoPopup(String message) {
+        showAlert(Alert.AlertType.INFORMATION, "Message", message);
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
