@@ -1,5 +1,6 @@
 package ui.cli;
 
+import data.implementation.BouquetRepositoryImpl;
 import data.implementation.CustomersRepositoryImpl;
 
 public class Program {
@@ -11,6 +12,12 @@ public class Program {
     private void run() {
         registerCustomer("Lucas", "Password");
         loginCustomer("Lucas", "Password");
+        generateFlowers(20);
+    }
+
+    private void generateFlowers(int size) {
+        BouquetRepositoryImpl bouquetRepository = new BouquetRepositoryImpl();
+        System.out.println(bouquetRepository.generateBouquet(size).toString());
     }
 
     private void registerCustomer(String login, String password) {

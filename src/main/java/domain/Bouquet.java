@@ -42,6 +42,14 @@ public class Bouquet {
     }
 
     @Override
+    public String toString() {
+        return "Bouquet{" +
+                "flowers=" + flowers +
+                ", bouquetId='" + bouquetId + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(bouquetId);
     }
