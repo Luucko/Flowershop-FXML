@@ -71,8 +71,11 @@ public class BouquetRepositoryImpl implements BouquetsRepository {
 
         File orderFile = new File(bouquetsDir, customerName + ".dat");
 
+        List<Bouquet> existingOrders = getOrders(customerName);
+        existingOrders.add(bouquet);
+
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(orderFile))) {
-            oos.writeObject(bouquet);
+            oos.writeObject(existingOrders);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Unable to write order to file", e);
             throw new FlowershopException("Unable to write order to file");
@@ -82,10 +85,29 @@ public class BouquetRepositoryImpl implements BouquetsRepository {
     }
 
 
+
     public List<Bouquet> getOrders(String customerName) {
-        // order als lijst uit files halen
-        // directory heeft de naam van de klant als directorynaam
-        // inhoud bevat bestelde bouquets in object (niet human readable)
-        return null;
+        List<Bouquet> orders = new ArrayList<>();
+        File bouquetsDir = new File("bouquets");
+
+        if (!bouquetsDir.exists() || !bouquetsDir.isDirectory()) {
+            return orders; // "bouquets" directory doesn't exist or is not a directory
+        }
+
+        File[] customerFiles = bouquetsDir.listFiles((dir, name) -> name.startsWith(customerName) && name.endsWith(".dat"));
+
+        if (customerFiles != null) {
+            for (File file : customerFiles) {
+                try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+                    List<Bouquet> orderList = (List<Bouquet>) ois.readObject(); // <-- Corrected line
+                    orders.addAll(orderList);
+                } catch (IOException | ClassNotFoundException e) {
+                    LOGGER.log(Level.SEVERE, "Error reading bouquet order from file: " + file.getName(), e);
+                    throw new FlowershopException("Error reading bouquet order from file: " + file.getName());
+                }
+            }
+        }
+
+        return orders;
     }
 }

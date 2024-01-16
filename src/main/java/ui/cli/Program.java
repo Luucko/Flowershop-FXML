@@ -19,6 +19,7 @@ public class Program {
         BouquetRepositoryImpl bouquetRepository = new BouquetRepositoryImpl();
         System.out.println(bouquetRepository.generateBouquet(size).toString());
         bouquetRepository.placeOrder(bouquetRepository.generateBouquet(10), "test");
+        System.out.println(bouquetRepository.getOrders("test"));
     }
 
     private void registerCustomer(String login, String password) {
