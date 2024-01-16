@@ -22,7 +22,7 @@ class BouquetTest {
     }
 
     @Test
-    void calculateTotalPrice_WithSingleFlower_ShouldReturnFlowerPrice() {
+    void calculateTotalPriceOneFlower() {
         // Arrange
         Flower rose = new Flower("Rose", 10.0);
         Bouquet bouquetWithSingleFlower = new Bouquet(List.of(rose));
@@ -35,7 +35,7 @@ class BouquetTest {
     }
 
     @Test
-    void calculateTotalPrice_WithMultipleFlowers_ShouldReturnSumOfFlowerPrices() {
+    void calculateTotalPriceMultipleFlowers() {
         // Arrange
         Flower rose = new Flower("Rose", 10.0);
         Flower tulip = new Flower("Tulip", 8.0);
@@ -51,7 +51,7 @@ class BouquetTest {
     }
 
     @Test
-    void getFlowers_ShouldReturnCorrectListOfFlowers() {
+    void getFlowers() {
         // Arrange
         Flower rose = new Flower("Rose", 10.0);
         Flower tulip = new Flower("Tulip", 8.0);
