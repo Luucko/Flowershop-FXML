@@ -1,16 +1,22 @@
 package services;
 
 import data.implementation.BouquetRepositoryImpl;
-import data.implementation.CustomersRepositoryImpl;
+import domain.Bouquet;
+
+import java.util.List;
 
 public class BouquetService {
     private BouquetRepositoryImpl repository = new BouquetRepositoryImpl();
 
+    public Bouquet generateBouquet(int size){
+        return repository.generateBouquet(size);
+    }
 
+    public Bouquet placeOrder(Bouquet bouquet, String customerName){
+        return repository.placeOrder(bouquet, customerName);
+    }
 
-    //private FileIO fileIO = new FileIO();
-    // files via deze Service naar directory wegschrijven
-    // PAS ALS DEZE KLANT ZIJN EERST BESTELLING PLAATST
-    // directory heeft de naam van de klant als directorynaam
-    // inhoud bevat bestelde bouquets
+    public List<Bouquet> getOrders(String customerName){
+        return repository.getOrders(customerName);
+    }
 }
