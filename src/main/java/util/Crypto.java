@@ -44,4 +44,32 @@ public class Crypto {
     public boolean checkHashedPassword(String password, String hashedPassword){
         return BCrypt.checkpw(password, hashedPassword);
     }
+
+    public static void main(String[] args) {
+        encryptCredentials();
+    }
+
+    private static void encryptCredentials() {
+        Properties properties = new Properties();
+
+        // Encrypt your sensitive data
+        String username = "exam-user";
+        String password = "exam-pwd";
+
+        Crypto crypto = Crypto.getInstance();
+        String encryptedUsername = crypto.encrypt(username);
+        String encryptedPassword = crypto.encrypt(password);
+
+        // Store the encrypted data in the properties file
+        properties.setProperty("db.url", "jdbc:mysql://localhost/exam");
+        properties.setProperty("db.username", encryptedUsername);
+        properties.setProperty("db.password", encryptedPassword);
+
+        try (FileOutputStream out = new FileOutputStream("src/main/resources/config/config.properties")) {
+            properties.store(out, "Encrypted database credentials");
+        } catch (IOException ex) {
+            LOGGER.log(Level.SEVERE, "An error occurred while writing the properties file", ex);
+
+        }
+    }
 }
