@@ -52,9 +52,13 @@ public class BouquetsController {
 
     @FXML
     private Label txtTotalPrice;
+    private Bouquet currentBouquet;
 
     private final BouquetService service = new BouquetService();
-    public void displayLogin(String login) {
+    private String customerUsername;
+
+    public void setCustomerUsername(String login){
+        this.customerUsername = login;
         txtCustomerName.setText("Customer: " + login);
     }
 
@@ -84,11 +88,12 @@ public class BouquetsController {
         List<Flower> flowers = bouquet.getFlowers();
         listViewFlowers.setItems(FXCollections.observableArrayList(flowers));
         txtTotalPrice.setText(String.format("%.2f", bouquet.calculateTotalPrice()));
+        this.currentBouquet = bouquet;
     }
 
     @FXML
     void onPlaceOrder(ActionEvent event) {
-
+        service.placeOrder(currentBouquet, customerUsername);
     }
 
     private void showErrorPopup(String message) {

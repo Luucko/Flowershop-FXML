@@ -91,7 +91,7 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/Bouquets.fxml")));
             Parent parent = loader.load();
             BouquetsController bouquetsController = loader.getController();
-            bouquetsController.displayLogin(txtLoginField.getText());
+            bouquetsController.setCustomerUsername(txtLoginField.getText());
             Scene scene = new Scene(parent);
             Stage secondaryStage = new Stage();
             secondaryStage.setScene(scene);
