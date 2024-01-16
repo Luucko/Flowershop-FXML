@@ -43,12 +43,12 @@ public class BouquetsController {
     private TextField txtAmountOfFlowersField;
 
     @FXML
-    private Label txtCustomerLogin;
+    private Label txtCustomerName;
 
     @FXML
     private Label txtTotalPrice;
     public void displayLogin(String login) {
-        txtCustomerLogin.setText("Customer: " + login);
+        txtCustomerName.setText("Customer: " + login);
     }
 
     @FXML
@@ -76,7 +76,7 @@ public class BouquetsController {
         assert tabConfigureBouquet != null : "fx:id=\"tabConfigureBouquet\" was not injected: check your FXML file 'Bouquets.fxml'.";
         assert tabOrderList != null : "fx:id=\"tabOrderList\" was not injected: check your FXML file 'Bouquets.fxml'.";
         assert txtAmountOfFlowersField != null : "fx:id=\"txtAmountOfFlowersField\" was not injected: check your FXML file 'Bouquets.fxml'.";
-        assert txtCustomerLogin != null : "fx:id=\"txtCustomerLogin\" was not injected: check your FXML file 'Bouquets.fxml'.";
+        assert txtCustomerName != null : "fx:id=\"txtCustomerLogin\" was not injected: check your FXML file 'Bouquets.fxml'.";
         assert txtTotalPrice != null : "fx:id=\"txtTotalPrice\" was not injected: check your FXML file 'Bouquets.fxml'.";
     }
 }

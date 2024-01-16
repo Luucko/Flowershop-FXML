@@ -12,7 +12,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.gui.BouquetsController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="🌸 Welcome to the Flower Shop" />
-      <Label fx:id="txtCustomerLogin" layoutX="14.0" layoutY="53.0" text="Customer: {0}" />
+      <Label fx:id="txtCustomerName" layoutX="14.0" layoutY="53.0" text="Customer: {0}" />
       <TabPane layoutX="14.0" layoutY="86.0" prefHeight="314.0" prefWidth="568.0" style="-fx-border-style: solid inside;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="tabConfigureBouquet" text="Configure bouquet">
