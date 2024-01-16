@@ -10,7 +10,7 @@ javafx {
 }
 
 application {
-    mainClass.set("ui.ExamApp")
+    mainClass.set("ui.FlowerApp")
 }
 
 group = "org.example"

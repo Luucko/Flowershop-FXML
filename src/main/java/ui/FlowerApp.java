@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class ExamApp extends Application {
+public class FlowerApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -14,9 +14,9 @@ public class ExamApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/examWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Exam window");
+        primaryStage.setTitle("Login or Register");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
