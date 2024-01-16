@@ -1,11 +1,16 @@
 package ui.gui;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import domain.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -42,8 +47,7 @@ public class LoginController {
 
                 if (isValidUser) {
                     System.out.println("customer logged in successfully");
-                    // successful screen popup
-                    close();
+                    openBouquetsWindow();
                 } else {
                     System.out.println("username and password do not match");
                     // errorscreen popup
@@ -68,7 +72,6 @@ public class LoginController {
                 } else {
                     System.out.println("new customer registered successfully");
                     // successful screen popup
-                    close();
                 }
             } catch (FlowershopException e) {
                 // Handle other exceptions, if any
@@ -89,7 +92,23 @@ public class LoginController {
         return true;
     }
 
-    private void close() {
+    private void openBouquetsWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/fxml/Bouquets.fxml")));
+            Parent parent = loader.load();
+            BouquetsController bouquetsController = loader.getController();
+            bouquetsController.displayLogin(txtLoginField.getText());
+            Scene scene = new Scene(parent);
+            Stage secondaryStage = new Stage();
+            secondaryStage.setScene(scene);
+            closeLogin();
+            secondaryStage.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void closeLogin() {
         Stage stage = (Stage) btnLogin.getScene().getWindow();
         stage.close();
     }

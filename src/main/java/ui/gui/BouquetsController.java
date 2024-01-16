@@ -47,6 +47,9 @@ public class BouquetsController {
 
     @FXML
     private Label txtTotalPrice;
+    public void displayLogin(String login) {
+        txtCustomerLogin.setText("Customer: " + login);
+    }
 
     @FXML
     void onClose(ActionEvent event) {
@@ -75,7 +78,5 @@ public class BouquetsController {
         assert txtAmountOfFlowersField != null : "fx:id=\"txtAmountOfFlowersField\" was not injected: check your FXML file 'Bouquets.fxml'.";
         assert txtCustomerLogin != null : "fx:id=\"txtCustomerLogin\" was not injected: check your FXML file 'Bouquets.fxml'.";
         assert txtTotalPrice != null : "fx:id=\"txtTotalPrice\" was not injected: check your FXML file 'Bouquets.fxml'.";
-
     }
-
 }

@@ -16,7 +16,6 @@ public class FlowerApp extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Login or Register");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
