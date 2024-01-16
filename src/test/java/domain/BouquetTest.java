@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class BouquetTest {
 
@@ -64,5 +65,22 @@ class BouquetTest {
 
         // Assert
         assertEquals(Arrays.asList(rose, tulip, lily), flowers);
+    }
+
+    @Test
+    void compareBouquets() {
+        // Arrange
+        Flower rose = new Flower("Rose", 10.0);
+        Flower tulip = new Flower("Tulip", 8.0);
+        Flower lily = new Flower("Lily", 12.0);
+
+        Bouquet bouquet1 = new Bouquet(List.of(rose, tulip));
+        Bouquet bouquet2 = new Bouquet(List.of(lily));
+
+        // Act
+        // Nothing to act here since we don't change or require anything extra
+
+        // Assert
+        assertNotEquals(bouquet1,bouquet2);
     }
 }
