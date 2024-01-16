@@ -37,12 +37,12 @@ public class Crypto {
         return encryptor.decrypt(in);
     }
 
-    public String hash(String password) {
+    public String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    public boolean checkHashedPassword(String password, String hashedPassword){
-        return BCrypt.checkpw(password, hashedPassword);
+    public boolean checkPassword(String password, String hash) {
+        return BCrypt.checkpw(password, hash);
     }
 
     public static void main(String[] args) {
