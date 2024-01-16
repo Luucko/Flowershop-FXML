@@ -53,15 +53,15 @@ public class Crypto {
         Properties properties = new Properties();
 
         // Encrypt your sensitive data
-        String username = "exam-user";
-        String password = "exam-pwd";
+        String username = "flowershop-user";
+        String password = "flowershop-pwd";
 
         Crypto crypto = Crypto.getInstance();
         String encryptedUsername = crypto.encrypt(username);
         String encryptedPassword = crypto.encrypt(password);
 
         // Store the encrypted data in the properties file
-        properties.setProperty("db.url", "jdbc:mysql://localhost/exam");
+        properties.setProperty("db.url", "jdbc:mysql://localhost/flowershop");
         properties.setProperty("db.username", encryptedUsername);
         properties.setProperty("db.password", encryptedPassword);
 
