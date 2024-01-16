@@ -36,7 +36,24 @@ public class LoginController {
 
     @FXML
     void onLogin(ActionEvent event) {
+        if (fieldsFilledIn()) {
+            try {
+                boolean isValidUser = service.checkCustomerCredentials(txtLoginField.getText(), txtPasswordField.getText());
 
+                if (isValidUser) {
+                    System.out.println("customer logged in successfully");
+                    // successful screen popup
+                    close();
+                } else {
+                    System.out.println("username and password do not match");
+                    // errorscreen popup
+                }
+
+            } catch (FlowershopException e) {
+                // Handle other exceptions, if any
+                System.out.println(e);
+            }
+        }
     }
 
     @FXML
