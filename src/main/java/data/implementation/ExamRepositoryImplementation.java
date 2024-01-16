@@ -1,8 +1,7 @@
 package data.implementation;
 
 import data.util.MySqlConnection;
-import domain.ExamClass;
-import util.exceptions.ExamException;
+import util.exceptions.FlowershopException;
 
 import java.sql.*;
 import java.util.logging.Level;
@@ -21,12 +20,12 @@ public class ExamRepositoryImplementation {
             if (resultSet.next()) {
                 return resultSet.getString(1);
             } else {
-                throw new ExamException("Unable to retrieve MySQL version");
+                throw new FlowershopException("Unable to retrieve MySQL version");
             }
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Unable to retrieve MySQL version from the database", e);
-            throw new ExamException("Unable to retrieve MySQL version from the database");
+            throw new FlowershopException("Unable to retrieve MySQL version from the database");
         }
     }
 }

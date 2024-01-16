@@ -1,8 +1,8 @@
 package data.repository;
 
-import domain.User;
+import domain.Customer;
 
 public interface CustomersRepository {
-    User registerUser(String username, String password);
-    boolean checkUserCredentials(String username, String password);
+    Customer registerCustomer(String login, String password);
+    boolean checkCustomerCredentials(String login, String password);
 }

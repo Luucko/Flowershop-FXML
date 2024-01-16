@@ -1,6 +1,6 @@
 package util;
 
-import util.exceptions.ExamException;
+import util.exceptions.FlowershopException;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class Config {
             properties.load(is);
         } catch (IOException ex) {
             LOGGER.log(Level.SEVERE, "Unable to read config from properties file.", ex);
-            throw new ExamException("Unable to load application configuration.");
+            throw new FlowershopException("Unable to load application configuration.");
         }
     }
 
@@ -49,7 +49,7 @@ public class Config {
             properties.store(fos, "");
         } catch (IOException ex) {
             LOGGER.log(Level.SEVERE, "Unable to write config to properties file.", ex);
-            throw new ExamException("Unable to store application configuration.");
+            throw new FlowershopException("Unable to store application configuration.");
         }
     }
 
