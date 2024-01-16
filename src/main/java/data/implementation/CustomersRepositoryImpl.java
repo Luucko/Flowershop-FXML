@@ -7,12 +7,8 @@ import util.Crypto;
 import util.exceptions.FlowershopException;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CustomersRepositoryImpl implements CustomersRepository {
-
-    private static final Logger LOGGER = Logger.getLogger(CustomersRepositoryImpl.class.getName());
 
     private static final String SQL_REGISTER_CUSTOMER = "INSERT INTO customers(login, PASSWORD) VALUES(?,?)";
     private static final String SQL_CHECK_CUSTOMER_EXISTENCE = "SELECT COUNT(*) FROM customers WHERE login = ?";
@@ -39,7 +35,7 @@ public class CustomersRepositoryImpl implements CustomersRepository {
 
             return null;
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Unable to register customer to the database", e);
+            handleDatabaseException("Unable to register customer to the database");
             throw new FlowershopException("Unable to register customer to the database");
         }
     }
@@ -65,15 +61,12 @@ public class CustomersRepositoryImpl implements CustomersRepository {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Error checking customer password in the database", e);
+            handleDatabaseException("Error checking customer password in the database");
             throw new FlowershopException("Error checking customer password in the database");
         }
 
         return false; //password is invalid
     }
-
-
-
 
     private boolean exists(String login) {
         try (
@@ -88,9 +81,13 @@ public class CustomersRepositoryImpl implements CustomersRepository {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Error checking customer existence in the database", e);
+            handleDatabaseException("Error checking customer existence in the database");
             throw new FlowershopException("Error checking customer existence in the database");
         }
         return false;
+    }
+
+    private void handleDatabaseException(String message) {
+        throw new FlowershopException(message);
     }
 }
