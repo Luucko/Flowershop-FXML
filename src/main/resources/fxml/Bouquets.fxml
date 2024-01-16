@@ -31,7 +31,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="tabOrderList" text="Your order list">
+          <Tab fx:id="tabOrderList" onSelectionChanged="#onOrderList" text="Your order list">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

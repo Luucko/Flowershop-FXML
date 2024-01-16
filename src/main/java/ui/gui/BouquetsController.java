@@ -9,6 +9,7 @@ import domain.Flower;
 import domain.Bouquet;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -95,6 +96,21 @@ public class BouquetsController {
     void onPlaceOrder(ActionEvent event) {
         service.placeOrder(currentBouquet, customerUsername);
     }
+
+    @FXML
+    void onOrderList(Event event) {
+        if (event.getSource() instanceof Tab) {
+            Tab selectedTab = (Tab) event.getSource();
+
+            if (selectedTab.isSelected()) {
+                List<Bouquet> orders = service.getOrders(customerUsername);
+
+                // Display orders in listViewOrderList
+                listViewOrderList.setItems(FXCollections.observableArrayList(orders));
+            }
+        }
+    }
+
 
     private void showErrorPopup(String message) {
         showAlert(Alert.AlertType.ERROR, "Error", message);
