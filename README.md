@@ -1,7 +1,6 @@
 # **Flower Shop (2024)**
-## *Course: Object Oriented Architectures & Secure Development*
-## *Grade: 17/20*
-## *Tools used: Java, JavaFX, Gradle, JUnit, SQLite, GitLab, custom exceptions, Crypto utility*
+## **Course:** Object Oriented Architectures & Secure Development
+## **Tools used:** Java, JavaFX, Gradle, JUnit, SQLite, GitLab, custom exceptions, Crypto utility
 
 This project was the final exam assignment for the **Object Oriented Architectures & Secure Development** course. The goal was to design and implement a secure and well-architected JavaFX desktop application using Gradle. The app simulates a flower shop where customers can register, log in, configure custom bouquets, and place orders.
 
